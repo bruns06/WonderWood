@@ -3,6 +3,11 @@
 #include <time.h>
 using namespace std;
 
+//TODO NEXT:
+     //ADD CLASSES
+     //ADD ITEMS
+     //ADD MOR ENEMIES
+     //ADD DIFFERENT SPELLS
 int main()
 {    
     char Start;
