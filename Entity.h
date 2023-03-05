@@ -79,12 +79,12 @@ class Entity {
 		}
 
 		int spellAttack(int attack, int defence, int intelligence) {
-			int dmg = (attack + intelligence) - defence;
+			int dmg = intelligence - defence / 2;
 			return dmg;
 		}
 
 		int chargedAttack(int attack, int defence) {
-			int dmg = attack * 2 - defence;
+			int dmg = ((attack + 1) * 2) - defence;
 			return dmg;
 		}
 

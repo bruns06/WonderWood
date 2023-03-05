@@ -8,6 +8,7 @@ using namespace std;
      //ADD ITEMS
      //ADD MOR ENEMIES
      //ADD DIFFERENT SPELLS
+
 int main()
 {    
     char Start;
@@ -38,10 +39,11 @@ int main()
 
         if (Player.getLevel() > 1) {
 
-            Player.setHp(Player.getMaxhp() + Player.getLevel());       
-            Player.setIntelligence(Player.getIntelligence() + Player.getLevel());
-            Player.setDefence(Player.getDefence() + Player.getLevel());
-            Player.setAttack(Player.getAttack() + Player.getLevel());
+            Player.setMaxhp(Player.getMaxhp() * Player.getLevel());
+            Player.setHp(Player.getMaxhp());       
+            Player.setIntelligence(Player.getIntelligence() * Player.getLevel());
+            Player.setDefence(Player.getDefence() * Player.getLevel());
+            Player.setAttack(Player.getAttack() * Player.getLevel());
         }
                 
         cout << "\n\n\t\tSTATS:" << endl;
@@ -51,12 +53,12 @@ int main()
         cout << "Player's Intelligence: " << Player.getIntelligence() << endl;
         cout << "Player's HP: " << Player.getMaxhp() << endl;
 
-        int enemyhp = rand() % 20 + 1 + Player.getLevel();
-        int enemyInt = rand() % 10 + 1 + Player.getLevel();
-        int enemyDefence = rand() % 6 + 1 + Player.getLevel();
-        int enemyAttack = rand() % 10 + 1 + Player.getLevel();
+        int enemyhp = (rand() % 15 + 1) * Player.getLevel();
+        int enemyInt = (rand() % 8 + 1) * Player.getLevel();
+        int enemyDefence = (rand() % 3 + 1) * Player.getLevel();
+        int enemyAttack = (rand() % 6 + 1) * Player.getLevel();
         
-        Entity Enemy(enemyhp, enemyDefence, enemyDefence, 0, enemyhp);
+        Entity Enemy(enemyhp, enemyAttack, enemyDefence, enemyInt, enemyhp);
 
         int dmgDone = 0;
         bool isPlayerTurn = true;
@@ -93,6 +95,7 @@ int main()
                     cout << "\nPlayer charges ahead and smashes into the enemy!\n" << endl;
                     dmgDone = Player.chargedAttack(Player.getAttack(), Enemy.getDefence());
                     Enemy.setHp(Enemy.getHp() - dmgDone);
+                    Player.setHp(Player.getHp() - dmgDone / 4);
                     cout << "Enemy took " << dmgDone << " DMG " << endl;
                     break;
                 }
